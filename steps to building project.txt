@@ -49,12 +49,9 @@ After I have set of usable variables, I will use my years_countries dictionary a
         (name corresponds to country name in combatant_countries set)
        
 
-8.)Write function that utilizes regional data and world data, and ChatGpt api to deal with missing values.  [DONE]
-fill rest of the remaining Na's with various methods (average, interpolate, 0). I will use interpolate technique since it is most efficient
-However, since it is pretty hard to interpolate over rows for my kind of data frame I will first transpose dataframes and then interpolate.
+8-9.)Write function that utilizes regional data and world data, and ChatGpt api to deal with missing values [OUTDATED!!!].  [DONE]
+Transpose data frames and fill them
 
-
-9.)Use functions in 8 to fill missing values. Keep data frames transposed  [DONE]
 
 10.)Find function that creates a custom data frame for each war based on year of war, beligerents of war,  [DONE]
 and how many years before the war we track the war (the last variable will be custom based on data avaliability)
@@ -65,16 +62,20 @@ and has the varaible (which will be used as dependent variable later) Years_befo
 
 12.)Join all the data frames into one big data frame     [DONE]
 
-13.)Run regressions in model based on data frame 12, and choose the best one. y=years before the war , x's are the economic,political and demographic variables.
+13.)Run regressions in model based on data frame 12, and choose the best one. y=years before the war , x's are the economic,political and demographic variables. [DONE]
 
-14.) After regressions create a prediction model, that will use betas from prediction
+14.) After regressions create a prediction model, that will use betas from prediction [DONE]
 to predict years before the war between two countries, based on inputed current statistics for said countries
 
-15.)Make 2024 data frame for all statistics in 4, for all countries.
+15.)Make 2023 data frame for all statistics in 4, for all countries. [DONE]
++i made similar data for all avaliable years except of 1961 and 1962
 
 16.)Create a function that will utilize model in 14, and df in 15 to give predictions of years before the war
-based on two countries chosen
+based on two countries chosen  [DONE]
+THe prediction will calculate years before the war individual countries and return average, + after some study on my prediction accuracy
+(which you can see in the Prediction_Accuracy_Of_War_Predictor) I adjusted the prediction model to return years before the war to be -3.7 of the War Predictor
+Prediction because that was average by which the PRedictor missed the mark.
 
 17.) Use tkinter to create GUI for project. Part of GUI will be a page where person can choose from scroll-down search bar
 two countries , and then press "see possible years before the war", and afterwards the result from functio 16 will be shown to the
-user
+user. IN the process!
