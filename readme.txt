@@ -3,6 +3,7 @@ War Predictor
    ******
 War Predictor user guide 
 ***********************
+PYTHON VERSION:Python 3.13.0
 open the file war_Predictor_2.py in its directory , and write function : War_Predictor_2(year,country1,country2), where in which 
 you are interested to know how many predicted years are left before the possible war, and country1/country2 should be two countries
 based on their world bank names, provided the data for some economic varaibles are avaliable in interested year, the model will provide prediction
@@ -92,7 +93,6 @@ Date Journey2                   File:"2023 data"------------->"2023 data"-------
 ********************************
                                 Data:WDICSV.csv               2023 csv, 2023 csv per country       per year, data frame for all countries in given year
                                                                 containing only OLS vars                     containing only ols vars
-
 
 
 
