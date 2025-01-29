@@ -6,7 +6,7 @@ War Predictor user guide
 open the file war_Predictor_2.py in its directory , and write function : War_Predictor_2(year,country1,country2), where in which 
 you are interested to know how many predicted years are left before the possible war, and country1/country2 should be two countries
 based on their world bank names, provided the data for some economic varaibles are avaliable in interested year, the model will provide prediction
-else it will tell you that there is no sufficient data.
+else it will tell you that there is no sufficient data. HOWEVER! please try to predict wars that make sense based on geopolitical/politicla logic, since this is pure numeric statistical model , and does not take into consideration non-numeric information (whether countries have border, or any reason of war).
 
 
 
