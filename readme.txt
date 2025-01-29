@@ -68,6 +68,9 @@ stage six: War_Predictor_2(year,country1,country2) is a final function that util
 predict a years before the war. Last function in block test_the_model(conflicts_csv) tests the validity of model based on data, and since we found that model
 under rpedicted (predicted war to happen later than it actually did) , we added -3.7 to the model in fourth stage.
 
+Stage seven: build scatterplots and regression lines based on the data used for OLS regression to visualize how years before the war and the variables are related.
+Build GUI for the model so that user can simply choose coutnry from scroll down list, year and ask for prediction
+
 
 
 
@@ -111,3 +114,5 @@ war_Predictor_OLD_VERSION.py:     first version of predictor
 war_Predictor_2.py:               war Predictor code
 what_data_I_have_downloaded.txt:  detailed guide of what I downloaded from internet
 what_data_to_look_for.txt:        this is reflection in beggining what data I needed when i first started model
+world.png:                        background for GUI
+images:                           file that stores graph
