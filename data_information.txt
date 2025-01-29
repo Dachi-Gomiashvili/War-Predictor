@@ -1,4 +1,0 @@
-Since GitHub does not support uploading of large files , in order to run this project
-Person needs to download data from here and put it in the same directory as the rest of the project
-
-https://drive.google.com/drive/folders/1hujTuy1GQr4ylhlTBehMsBBnVt2RS8FL?usp=drive_link
