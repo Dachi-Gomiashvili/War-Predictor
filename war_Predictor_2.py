@@ -5,6 +5,7 @@ from statsmodels.api import OLS,add_constant
 import tkinter as tk
 import os 
 from pathlib import Path
+import matplotlib.pyplot as plt
 
 
                                 #####SHAVING OFF EXTRA DATA##############
@@ -417,8 +418,6 @@ country_list=[i.strip() for i in all_world_country]
         
 #I tested model using test_the_model(conflicts) (FUNCTION BELOW)
 #I used older version of function below to test the conflict predictor innacuracy
-#using excell I calculated that average innacuracy of the war was 3.7 years too late!
-#thus I will add -3.7 to the prediction by default in the War_Predictor function so it is more accurate in calculating wars
 #I did not write code twice to avoid duplication and ugly code
 
 
@@ -448,7 +447,7 @@ def War_Predictor_X_Year_CORRECTED(country1,country2,find_folder):
    try:
        prediction1=int(prediction_model_maker(cntry1_dict))
        prediction2=int(prediction_model_maker(cntry2_dict))
-       the_Prediction=(prediction1+prediction2)/2-3.7
+       the_Prediction=(prediction1+prediction2)/2
        print(f"years before the war for {country1}: {prediction1},\nyears before the war for {country2}:{prediction2}")
        print(f"years before the war between {country1} and {country2}: {the_Prediction}")
        return the_Prediction
@@ -497,3 +496,156 @@ def test_the_model(conflicts_csv):
 ##
 #test_the_model(conflicts)
 
+
+
+
+
+
+
+
+
+
+
+                         ###GUI AND Data visualizaiton###
+#########################################################################################################################################
+import tkinter as tk
+from tkinter import ttk, messagebox
+from PIL import Image, ImageTk
+import seaborn as sns
+os.makedirs("images",exist_ok=True)
+##visualization
+def scatterplot_plotter(savefolder):
+   y=final_data["years_before_the_war"] 
+   for i in included_vars:
+       x=final_data[i]
+       plt.scatter(x,y)
+       plt.xlabel(f"{i}")
+       plt.ylabel("years before the war")
+       plt.title(f"how {i} explains Closeness of war")
+       plt.grid(True)
+       plt.savefig(os.path.join(savefolder, f"{i}-years before the war scatter_plot.png"))
+       plt.clf()
+
+#reminder x and y are defined in regression above this makes regression line
+def reg_(savefolder):
+   for col in x.columns:
+       plt.figure(figsize=(8, 6))
+       sns.regplot(x=final_data[col], y=y)
+       plt.xlabel(col)
+       plt.ylabel("years before the war ")
+       plt.title(f"Regression: {col} vs Years before the war")
+
+       # Save the plot
+       plt.savefig(os.path.join(savefolder, f"{col}_vs_Y.png"))
+       plt.close()
+#reg_("images")
+#scatterplot_plotter("images")
+
+        
+
+#scatterplot_plotter("images")
+#reg_("images")
+print(War_Predictor_2("2023","Poland","Russian Federation"))
+def read_about_us():
+   with open("readme.txt", "r") as file:
+    return file.read()
+
+
+#GUI
+def show_about_us():
+    about_window = tk.Toplevel(root)
+    about_window.title("About Us")
+    about_window.geometry("500x400")
+    text = tk.Text(about_window, wrap=tk.WORD)
+    text.insert(tk.END, read_about_us())
+    text.config(state=tk.DISABLED)
+    text.pack(expand=True, fill=tk.BOTH)
+
+import tkinter as tk
+from tkinter import ttk
+from PIL import Image, ImageTk
+import os
+
+def show_data_visualization():
+   vis_window = tk.Toplevel(root)
+   vis_window.title("Data Visualization")
+   vis_window.geometry("800x600")
+
+   canvas = tk.Canvas(vis_window)
+   scrollbar = tk.Scrollbar(vis_window, orient="vertical", command=canvas.yview)
+   canvas.configure(yscrollcommand=scrollbar.set)
+
+   frame = tk.Frame(canvas)
+
+   canvas.create_window((0, 0), window=frame, anchor="nw")
+   canvas.pack(side="left", fill="both", expand=True)
+   scrollbar.pack(side="right", fill="y")
+
+   frame.update_idletasks()
+   canvas.config(scrollregion=canvas.bbox("all"))
+
+   for img_file in os.listdir("images"):
+       if img_file.endswith(".png"):
+           img = Image.open(os.path.join("images", img_file))
+           img = img.resize((400, 300))
+           img_tk = ImageTk.PhotoImage(img)
+           label = tk.Label(frame, image=img_tk, padx=10, pady=10)
+           label.image = img_tk
+           label.pack(pady=10)
+
+   frame.update_idletasks()
+   canvas.config(scrollregion=canvas.bbox("all"))
+
+
+
+def predict_war():
+   year = year_var.get()
+   country1 = country1_var.get()
+   country2 = country2_var.get()
+   if country1 == country2:
+       result_label.config(text="Select two different countries.")
+   else:
+       result = War_Predictor_2(year, country1, country2)  # Call prediction function
+       result_label.config(text=f"Prediction: {result}")
+
+
+
+root = tk.Tk()
+root.title("War Predictor")
+root.geometry("800x600")
+
+bg_image = Image.open("world.jpg")
+bg_image = bg_image.resize((800, 600))
+bg_tk = ImageTk.PhotoImage(bg_image)
+bg_label = tk.Label(root, image=bg_tk)
+bg_label.place(relwidth=1, relheight=1)
+
+frame = tk.Frame(root, bg="white", padx=20, pady=20)
+frame.place(relx=0.5, rely=0.5, anchor=tk.CENTER)
+
+ttk.Button(frame, text="About Us", command=show_about_us).pack(pady=5)
+ttk.Button(frame, text="Data Visualization", command=show_data_visualization).pack(pady=5)
+
+# Dropdowns for War Predictor
+  # Replace with full list
+years = [str(i) for i in range(1962, 2024)]
+
+country1_var = tk.StringVar()
+country2_var = tk.StringVar()
+year_var = tk.StringVar()
+
+ttk.Label(frame, text="Select Country 1:").pack()
+ttk.Combobox(frame, textvariable=country1_var, values=country_list).pack()
+
+ttk.Label(frame, text="Select Country 2:").pack()
+ttk.Combobox(frame, textvariable=country2_var, values=country_list).pack()
+
+ttk.Label(frame, text="Select Year:").pack()
+ttk.Combobox(frame, textvariable=year_var, values=years).pack()
+
+ttk.Button(frame, text="Predict War", command=predict_war).pack(pady=5)
+
+result_label = ttk.Label(frame, text="")
+result_label.pack()
+
+root.mainloop()
