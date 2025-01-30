@@ -109,7 +109,8 @@ Na_statistics_postscriptum.txt:   Na statistics after interpolation
 Na_statistics.txt:                Na statistics in the unified data frame before any change
 OLS_results.txt:                  self explanatory, OLS coefficients,sds and other statistics from regressing years_before_the_war on other variables
 Prediction_accuracy_of_War_Predictor.csv:      How accurately were conflicts in csv_of_wars.csv predicted, however this is old file for different version of model and is not super important(it is adjusted to be 
-                                               bit more accurate than it actually is, so each value is -3.7 of original predicted value, I did this to make model more accurate , but I changed it)
+                                               bit more accurate than it actually is, so each value is -3.7 of original predicted value, I did this to make model more accurate , but I realized it was not good 
+                                               change and i kept original model)
 requierements.txt:                requiered libraries and their version to run this code
 steps to building project.txt:    detailed explanation how project was made
 unfiltered_matching_variables.txt: variables matched by keyword search in all vars in section 1
