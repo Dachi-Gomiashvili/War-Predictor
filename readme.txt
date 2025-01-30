@@ -4,10 +4,12 @@ War Predictor
 War Predictor user guide 
 ***********************
 PYTHON VERSION:Python 3.13.0
-open the file war_Predictor_2.py in its directory , and write function : War_Predictor_2(year,country1,country2), where in which 
+open the file war_Predictor_2.py in its directory , and once you do it in few seconds graphical user interface window will appear titled war predicot,
+Choose country 1, country2 (you can either use scroll selector or write by yourself, but please write something for country1/2 and year otherwise function won't work) and year where in which 
 you are interested to know how many predicted years are left before the possible war, and country1/country2 should be two countries
 based on their world bank names, provided the data for some economic varaibles are avaliable in interested year, the model will provide prediction
-else it will tell you that there is no sufficient data. HOWEVER! please try to predict wars that make sense based on geopolitical/politicla logic, since this is pure numeric statistical model , and does not take into consideration non-numeric information (whether countries have border, or any reason of war).
+else it will tell you None(meaning that there is no sufficient data). HOWEVER! please try to predict wars that make sense based on geopolitical/politicla logic, since this is pure numeric statistical model , and does not take into consideration non-numeric information (whether countries have border, or any reason of war) so maybe for example two countries that are ally might be prepearing for war so if you put them in model it will predict that war will be soon. Another notice
+is to not take this prediction too seriously since the data is little bit scarce so model is not super accurate however it has some wisdom. 
 
 
 
